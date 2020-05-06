@@ -1,0 +1,138 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<!--[if IE 9]>         <html class="no-js lt-ie10" lang="en"> <![endif]-->
+<!--[if gt IE 9]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+
+        <title>ProUI - Responsive Bootstrap Admin Template</title>
+
+        <meta name="description" content="ProUI is a Responsive Bootstrap Admin Template created by pixelcave and published on Themeforest.">
+        <meta name="author" content="pixelcave">
+        <meta name="robots" content="noindex, nofollow">
+        <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=0">
+
+        <link rel="shortcut icon" href="{% static 'back/img/favicon.png'%}">
+        <link rel="apple-touch-icon" href="{% static 'back/img/icon57.png'%}" sizes="57x57">
+        <link rel="apple-touch-icon" href="{% static 'back/img/icon72.png'%}" sizes="72x72">
+        <link rel="apple-touch-icon" href="{% static 'back/img/icon76.png'%}" sizes="76x76">
+        <link rel="apple-touch-icon" href="{% static 'back/img/icon114.png'%}" sizes="114x114">
+        <link rel="apple-touch-icon" href="{% static 'back/img/icon120.png'%}" sizes="120x120">
+        <link rel="apple-touch-icon" href="{% static 'back/img/icon144.png'%}" sizes="144x144">
+        <link rel="apple-touch-icon" href="{% static 'back/img/icon152.png'%}" sizes="152x152">
+        <link rel="apple-touch-icon" href="{% static 'back/img/icon180.png'%}" sizes="180x180">
+
+        <link rel="stylesheet" href="{% static 'back/css/bootstrap.min.css'%}">
+
+        <link rel="stylesheet" href="{% static 'back/css/plugins.css'%}">
+        <link rel="stylesheet" href="{% static 'back/css/style.css'%}">
+
+        <link rel="stylesheet" href="{% static 'back/css/main.css'%}">
+        <link rel="stylesheet" href="{% static 'back/css/themes.css'%}">
+        <script src="{% static 'back/js/vendor/modernizr.min.js'%}"></script>
+
+        <style>
+
+        </style>
+
+    </head>
+
+<body>
+<div id="page-wrapper bg">
+    <div id="page-container" class="">
+        <div id="main-container">
+            <div id="page-content">
+
+                <div class="bg-img1 size-a-3 how1 pos-relative" style="background-image: url({% static '1.png' %});background-position: center;
+                                                                                background-repeat: no-repeat;
+                                                                                     background-size: cover;">
+                <div class="row" xmlns="http://www.w3.org/1999/html">
+                    <div class="card text-white mb-3">
+                        <div class="card-header">
+                            <h2 class="text-center">পবিত্র মাহে রমজানের সাহরী ও ইফতারের সময়সূচী হিজরি ১৪৪১</h2>
+                         </div>
+                    </div>
+
+                <div class="text-center text-danger" style="font-size: 20px">
+                    <p><strong>আপনার জেলা নির্বাচন করুন</strong></p>
+                    <p><strong> আজকের সময়সূচী ({{now}})</strong></p>
+                </div>
+
+                <div class="col-md-12 ">
+                    <div class="block ">
+                        <form action="{% url 'test'%}" method="post" enctype="multipart/form-data" class="form-horizontal form-bordered" >
+                            {% csrf_token %}
+                        <div class="form-group">
+                             <div class="col-md-12">
+                                <select id="district" name="district" class="select-chosen" data-placeholder="Choose a Category..." style="width: 250px;">
+                            <!--<option value=""> Select</option>-->
+                                        {% for i in dist%}
+                                     <option value="{{i.name}}">{{i.name}}</option>
+                                        {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+
+
+                         <div class="form-group">
+                            <div class="col-md-12">
+                                <button type="submit" class="btn btn-sm btn-primary"><i class="fa fa-angle-right"></i>Submit</button>
+                            </div>
+                        </div>
+                         </form>
+                     </div>
+                </div>
+
+                </div>
+
+            {% if flag %}
+    <div class="table-responsive">
+        <table id="" class="table table-vcenter table-condensed table-bordered ">
+            <thead class="block-title">
+                <tr>
+                    <th class="text-center">সেহরীর শেষ সময়</th>
+                    <th class="text-center">ইফতারের সময়</th>
+                </tr>
+            </thead>
+            <tbody class="block-title">
+                <tr style="color:red; font-size:20px">
+
+                    <td class="text-center">{{time.sehri_hour}}: {{time.sehri_minute}}</td>
+                    <td class="text-center">{{time.iftar_hour}}: {{time.iftar_minute}}</td>
+
+                </tr>
+            </tbody>
+
+        </table>
+    </div>
+    {% endif %}
+    </div>
+
+
+
+
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+        <script src="{% static 'back/js/vendor/jquery.min.js'%}"></script>
+        <script src="{% static 'back/js/vendor/bootstrap.min.js'%}"></script>
+        <script src="{% static 'back/js/plugins.js'%}"></script>
+        <script src="{% static 'back/js/app.js'%}"></script>
+
+        <script src="https://maps.googleapis.com/maps/api/js?key="></script>
+        <script src="{% static 'back/js/helpers/gmaps.min.js'%}"></script>
+
+
+        <script src="{% static 'back/js/pages/index.js' %}"></script>
+        <script>$(function(){ Index.init(); });</script>
+    </body>
+</html>
